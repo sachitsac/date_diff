@@ -26,7 +26,7 @@ function run( $date1, $date2 )
 	echo "\n# -----------------------------------------------------------------------\n";
 	echo "#\t Result: \n";
 	echo "#\t Input>\t\t $date1, $date2\n";
-	echo "#\t Output>\t {$diff->getLowerDate()}, {$diff->getUpperDate()}, $daysDiff\n";
+	echo "#\t Output>\t {$diff->getLowerDate()}, {$diff->getUpperDate()}, Days between dates: $daysDiff\n";
 	echo "#\t Thankyou! Have a nice day\n";
 	echo "# -----------------------------------------------------------------------\n";
 }
