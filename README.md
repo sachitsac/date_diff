@@ -33,7 +33,7 @@ Assuming you are in the root directory of this program.
 To run the test suite, type the following command in a terminal window:
 
 ```
-vendor/bin/codecept run
+vendor/bin/codecept run unit
 ```
 
 Thank you. Any feedback is welcome.

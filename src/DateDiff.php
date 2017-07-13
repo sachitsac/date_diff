@@ -145,7 +145,7 @@ class DateDiff
      * @author Sachit Malhotra <sachitsac@gmail.com>
 	 * @since 1.0.0		 
 	 */
-    public function getLowerDate() : array
+    public function getLowerDate() : string
     {
         return $this->lowerDate;
     }
@@ -172,7 +172,7 @@ class DateDiff
      * @author Sachit Malhotra <sachitsac@gmail.com>
 	 * @since 1.0.0	
      */
-    public function getUpperDate() : array
+    public function getUpperDate() : string
     {
         return $this->upperDate;
     }
