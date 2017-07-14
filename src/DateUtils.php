@@ -9,7 +9,7 @@ namespace App;
  * @author Sachit Malhotra <sachitsac@gmail.com>
  * @since 1.0.0
  **/
-class DateUtils
+trait DateUtils
 {
     /**
      * Validate if provided year is leap year or not

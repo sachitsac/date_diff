@@ -2,7 +2,7 @@
 
 namespace App;
 
-use \App\{DateInput, DateUtils};
+use \App\DateInput;
 
 /**
  * Provide two dates, this call will return the difference between the two in days
@@ -13,6 +13,8 @@ use \App\{DateInput, DateUtils};
  **/
 class DateDiff
 {
+    use \App\DateUtils;
+
     /**
      * Input class instance that provides the inputted dates
      *
@@ -175,8 +177,7 @@ class DateDiff
      */
     private function getMonthDays( int $month, int $year ) : int
     {
-        $dateUtils = new DateUtils;
-        return ( $dateUtils->isLeapYear( $year ) ) ?
-            $dateUtils->getLeapYearDayForMonth( $month ) : $dateUtils->getDayForMonth( $month );
+        return ( $this->isLeapYear( $year ) ) ?
+            $this->getLeapYearDayForMonth( $month ) : $this->getDayForMonth( $month );
     }
 }

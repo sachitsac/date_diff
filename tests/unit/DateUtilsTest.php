@@ -1,9 +1,9 @@
 <?php
 
-use App\DateUtils;
-
 class DateUtilsTest extends \Codeception\Test\Unit
 {
+    use \App\DateUtils;
+
     /**
      * @var \UnitTester
      */
@@ -11,17 +11,12 @@ class DateUtilsTest extends \Codeception\Test\Unit
     
     protected $dateUtils;
 
-    protected function _before()
-    {
-        $this->dateUtils = new DateUtils;
-    }
-
     /**
      * @expectedException TypeError
      */
     public function testIfNullIsPassedIsATypeErrorExceptionIsRaised()
     {
-        $isLeapYear = $this->dateUtils->isLeapYear();        
+        $isLeapYear = $this->isLeapYear();        
     }
 
     /**
@@ -29,18 +24,18 @@ class DateUtilsTest extends \Codeception\Test\Unit
      */
     public function testIfStringIsPassedATypeErrorExceptionIsRaised()
     {
-        $isLeapYear = $this->dateUtils->isLeapYear( 'aa' );        
+        $isLeapYear = $this->isLeapYear( 'aa' );        
     }
 
     public function testIfYearIsALeapYear()
     {
-        $isLeapYear = $this->dateUtils->isLeapYear( 2000 );
+        $isLeapYear = $this->isLeapYear( 2000 );
         $this->assertTrue( $isLeapYear );
     }
 
     public function testIfYearIsNotALeapYear()
     {
-        $isLeapYear = $this->dateUtils->isLeapYear( 2001 );
+        $isLeapYear = $this->isLeapYear( 2001 );
         $this->assertTrue( !$isLeapYear );
     }
 
@@ -49,7 +44,7 @@ class DateUtilsTest extends \Codeception\Test\Unit
      */
     public function testTypeErrorIsThrownIfNullIsPassedToMethod()
     {
-        $this->dateUtils->getDaysForMonth( null );
+        $this->getDaysForMonth( null );
     }
 
     /**
@@ -57,21 +52,21 @@ class DateUtilsTest extends \Codeception\Test\Unit
      */
     public function testTypeErrorIsThrownIfNonBooleanValueIsPassedToMethod()
     {
-        $this->dateUtils->getDaysForMonth( 1, null );
+        $this->getDaysForMonth( 1, null );
     }
 
     public function testNumberOfDaysInMayEqualThirtyOne()
     {
-        $this->assertEquals( 31, $this->dateUtils->getDaysForMonth( 4 ) );
+        $this->assertEquals( 31, $this->getDaysForMonth( 4 ) );
     }
 
     public function testNumberOfDaysInFebruaryForNonLeapYearEqualTwentyEight()
     {
-        $this->assertEquals( 28, $this->dateUtils->getDaysForMonth( 1 ) );
+        $this->assertEquals( 28, $this->getDaysForMonth( 1 ) );
     }
 
     public function testNumberOfDaysInFebruaryLeapYearEqualTwentyNine()
     {
-        $this->assertEquals( 29, $this->dateUtils->getDaysForMonth( 1, true ) );
+        $this->assertEquals( 29, $this->getDaysForMonth( 1, true ) );
     }
 }
