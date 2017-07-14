@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use App\{DateHelper,DateDiff,Inputs};
+use App\{DateUtils,DateDiff,DateInput};
 
 greeting();
 
@@ -15,10 +15,10 @@ if ( $date1 && $date2 ) {
 
 function run( $date1, $date2 )
 {
-	$inputs = new Inputs;
-	$inputs
-		->setDate1( $date1 )
-		->setDate2( $date2 );
+	$inputs = new DateInput;
+
+	$inputs->date1 = $date1;
+	$inputs->date2 = $date2;
 
 	$diff = new DateDiff( $inputs );
 	$daysDiff = $diff->getDays();
@@ -51,17 +51,18 @@ function greeting()
 function getValidDate( $num )
 {
 	$date = prompt( "Enter date $num: ");
-	$date1IsValid = DateHelper::isValidDate( $date );
+	
+	// $date1IsValid = DateUtils::isValidDate( $date );
 
-	if ( !$date1IsValid ) {
-		showError(
-			sprintf(
-				'Invalid date %d. Enter date in format "DD MM YYYY" and year ( YYYY ) is between 1900 - 2010"',
-				$num
-			)
-		);
-		$date = getValidDate( $num );
-	}
+	// if ( !$date1IsValid ) {
+	// 	showError(
+	// 		sprintf(
+	// 			'Invalid date %d. Enter date in format "DD MM YYYY" and year ( YYYY ) is between 1900 - 2010"',
+	// 			$num
+	// 		)
+	// 	);
+	// 	$date = getValidDate( $num );
+	// }
 
 	return $date;
 }
