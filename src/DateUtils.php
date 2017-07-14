@@ -60,34 +60,4 @@ class DateUtils
     {
         return $this->getDaysForMonth($monthNo);
     }
-
-    /**
-     * Sort date Asc
-     *
-     * @param  array  $dates
-     * @return array
-     * @since 1.0.0
-     */
-    public function sortDateAsc( array $dates ) : array
-    {
-        $date1Parts = explode( ' ', $dates[0] );
-        $date2Parts = explode( ' ', $dates[1] );
-
-        list( $day1, $month1, $year1 ) = $date1Parts;
-        list( $day2, $month2, $year2 ) = $date2Parts;
-
-        $yearsAreSame = (int) $year1 === (int) $year2;
-        $monthsAreEqual = (int) $month1 === (int) $month2;
-        $daysAreEqual   = (int) $day1 === (int) $day2;
-
-        if (((int) $year1 > (int) $year2) ||
-            ($yearsAreSame && !$monthsAreEqual && (int) $month1 > (int) $month2) ||
-            ($yearsAreSame && $monthsAreEqual && !$daysAreEqual && (int) $day1 > (int) $day2)) {
-            $swap = true;
-        } else {
-            $swap = false;
-        }
-
-        return ( $swap ) ? array_reverse( $dates ) : $dates;
-    }
 }
