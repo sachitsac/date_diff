@@ -9,31 +9,31 @@ class DateDiffTest extends \Codeception\Test\Unit
      */
     protected $tester;
     
-    public function testValidateDaysForProvidedDateRange5()
-    {
-        $inputs = new DateInput;
+    // public function testValidateDaysForProvidedDateRange5()
+    // {
+    //     $inputs = new DateInput;
 
-        $inputs->date1 = '12 10 2010';
-        $inputs->date2 = '13 10 2010';
+    //     $inputs->date1 = '12 10 2010';
+    //     $inputs->date2 = '13 10 2010';
 
-        $this->assertTrue( $inputs->valid() );
+    //     $this->assertTrue( $inputs->valid() );
 
-        $diff = new DateDiff( $inputs );
-        $this->assertEquals( 1, $diff->getDays() );
-    }
+    //     $diff = new DateDiff( $inputs );
+    //     $this->assertEquals( 1, $diff->getDays() );
+    // }
 
-    public function testValidateDaysForProvidedDateRange4()
-    {
-        $inputs = new DateInput;
+    // public function testValidateDaysForProvidedDateRange4()
+    // {
+    //     $inputs = new DateInput;
 
-        $inputs->date1 = '12 10 2010';
-        $inputs->date2 = '13 10 2007';
+    //     $inputs->date1 = '12 10 2010';
+    //     $inputs->date2 = '13 10 2007';
 
-        $this->assertTrue( $inputs->valid() );
+    //     $this->assertTrue( $inputs->valid() );
 
-        $diff = new DateDiff( $inputs );
-        $this->assertEquals( 1095, $diff->getDays() );
-    }
+    //     $diff = new DateDiff( $inputs );
+    //     $this->assertEquals( 1095, $diff->getDays() );
+    // }
 
     // tests
     public function testValidateDaysForProvidedDateRange1()

@@ -81,46 +81,32 @@ class DateDiff
     public function getDays() : int
     {
         $this->setupDates();
-
         $date1Parts = explode( ' ', $this->lowerDate );
         $date2Parts = explode( ' ', $this->upperDate );
 
         list( $day1, $month1, $year1 ) = $date1Parts;
         list( $day2, $month2, $year2 ) = $date2Parts;
 
-        $startMonth     = (int) $month1;
         $endMonth       = (int) $month2;
-        $startYear      = (int) $year1;
-        $endYear        = (int) $year2;
-        $yearTracker    = $startYear;
-        $monthTracker   = $startMonth;
-        $dayTracker     = (int) $day1;
-        $noOfDays       = 0;
+        $yearTracker    = (int) $year1;
+        $monthTracker   = (int) $month1;
         $endDay         = (int) $day2;
 
-        $noOfDaysInMonth = $this->getMonthDays( $startMonth - 1, $startYear );
+        // Start date days
+        $noOfDays = $this->getMonthDays( $month1, $year1 ) - (int) $day1;
+        $monthTracker++;
 
-        while (!($yearTracker === $endYear && $monthTracker === $endMonth && $endDay === $dayTracker)) {
-            
-            $noOfDays++;
-            $dayTracker++;
-
-            $needToIncrimentYear = ( $monthTracker === 12 && $dayTracker > $noOfDaysInMonth );
-            if ( $needToIncrimentYear ) {
+        while ( !($yearTracker === (int) $year2 && $monthTracker === ($endMonth + 1) ) ) {
+            if ( $monthTracker > 12 ) {
                 $yearTracker++;
                 $monthTracker = 1;
-                $dayTracker = 1;
-                $noOfDaysInMonth = $this->getMonthDays($monthTracker - 1, $yearTracker);
             }
-
-            $needToIncrimentMonth = ( $dayTracker > $noOfDaysInMonth );
-            if ( $needToIncrimentMonth ) {
-                $dayTracker = 1;
-                $monthTracker++;
-                $noOfDaysInMonth = $this->getMonthDays( $monthTracker - 1, $yearTracker );
-            }
+            $noOfDays += $this->getMonthDays( $monthTracker, $yearTracker );
+            $monthTracker++;
         }
 
+        // End Date days
+        $noOfDays -= ( $this->getMonthDays( $endMonth, $yearTracker ) - $endDay );
         return $noOfDays;
     }
 
@@ -178,6 +164,6 @@ class DateDiff
     private function getMonthDays( int $month, int $year ) : int
     {
         return ( $this->isLeapYear( $year ) ) ?
-            $this->getLeapYearDayForMonth( $month ) : $this->getDayForMonth( $month );
+            $this->getLeapYearDayForMonth( $month - 1 ) : $this->getDayForMonth( $month - 1 );
     }
 }
